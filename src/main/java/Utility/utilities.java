@@ -27,9 +27,9 @@ public class utilities extends BaseClass {
 	public void  getData() throws  Exception
 	{
 		String Element;
-		String ObjectLocator;
-		String Data;
-		String Object;
+		String ObjectLocator = null;
+		String Data = null;
+		String Object = null;
 		src=new File(fpath);
 		fis=new FileInputStream(src);
 		wb=new HSSFWorkbook(fis);
@@ -40,101 +40,105 @@ public class utilities extends BaseClass {
 		for(int i=0;i<rowcount;i++)
 		{
 			row=ws.getRow(i+1);
-			Element=row.getCell(k+1).toString().trim();
-			ObjectLocator=row.getCell(k+2).toString().trim();
-			Data=row.getCell(k+3).toString().trim();
-			Object=row.getCell(k+4).toString().trim();
-			
-		//	System.out.println(Element+ "  ---- " +ObjectLocator+ "===" +Data+ "====" + Object);
-				
-			switch(Element)
-			
-			{
-			case "Navigate"  : 
-			{
-				//System.out.println(d);
-				key.navigate(driver,Data);
-	//			logger.info("url is opened");
-				break;
-			}
-			case "InputText" : 
-			{
-				key.send_keys(driver,ObjectLocator,Data,Object);
-				break;
-			}
-			case "Click" :
-			{
-				key.click(driver,ObjectLocator,Object);
-				break;
-			}
-			case "Quit" :
-			{
-				key.quit(driver);
-				break;
-			}
-			case "Select":
-			{
-				key.Select(driver,Data,ObjectLocator,Object);
-				break;
-			}
-			case "IWait":
-			{
-				key.IWait(driver, Data);
-				break;
-			}
-			case "Close":
-			{
-				key.Close(driver);
-				break;
-			}
-			case "Gettext":
-			{
-				key.gettext(driver,Object,ObjectLocator);
-				break;
-			}
-			case "Submit":
-			{
-				key.submit(driver,ObjectLocator);
-				break;
-			}
-			case "Forward":
-			{
-				key.forward(driver);
-				break;
-			}
-			case "Back":
-			{
-				key.back(driver);
-				break;
-			}
-			case "Title":
-			{
-				key.Title(driver);
-				break;
-			}
-			case "Currenturl":
-			{
-				key.curl(driver);
-				break;
-			}
-			case "Radiobutton":
-			{
-				key.radiob(driver,ObjectLocator);
-				break;
-			}
-			case "Checkbox":
-			{
-				key.checkbox(driver,ObjectLocator);
-				break;
-			}
-			case "EWait":
-			{
-				key.Ewait(driver,ObjectLocator,Data,Object);
-			}
-
-			default:
-			{
-				//logger.info("you have entered a incorrect keyword");
+			if (row!=null){
+				Element=row.getCell(k+1).toString().trim();
+				if(row.getCell(k+2)!=null){
+					ObjectLocator=row.getCell(k+2).toString().trim();
+				}
+				if(row.getCell(k+3)!=null){
+					Data=row.getCell(k+3).toString().trim();
+				}	
+				if(row.getCell(k+4)!=null){
+					Object=row.getCell(k+4).toString().trim();
+				}	
+				if(Element!=null || ObjectLocator!=null || Data!=null || Object!=null ){
+				switch(Element) {
+				case "Navigate"  : 
+				{
+					//System.out.println(d);
+					key.navigate(driver,Data);
+		//			logger.info("url is opened");
+					break;
+				}
+				case "InputText" : 
+				{
+					key.send_keys(driver,ObjectLocator,Data,Object);
+					break;
+				}
+				case "Click" :
+				{
+					key.click(driver,ObjectLocator,Object);
+					break;
+				}
+				case "Quit" :
+				{
+					key.quit(driver);
+					break;
+				}
+				case "Select":
+				{
+					key.Select(driver,Data,ObjectLocator,Object);
+					break;
+				}
+				case "IWait":
+				{
+					key.IWait(driver, Data);
+					break;
+				}
+				case "Close":
+				{
+					key.Close(driver);
+					break;
+				}
+				case "Gettext":
+				{
+					key.gettext(driver,Object,ObjectLocator);
+					break;
+				}
+				case "Submit":
+				{
+					key.submit(driver,ObjectLocator);
+					break;
+				}
+				case "Forward":
+				{
+					key.forward(driver);
+					break;
+				}
+				case "Back":
+				{
+					key.back(driver);
+					break;
+				}
+				case "Title":
+				{
+					key.Title(driver);
+					break;
+				}
+				case "Currenturl":
+				{
+					key.curl(driver);
+					break;
+				}
+				case "Radiobutton":
+				{
+					key.radiob(driver,ObjectLocator);
+					break;
+				}
+				case "Checkbox":
+				{
+					key.checkbox(driver,ObjectLocator);
+					break;
+				}
+				case "EWait":
+				{
+					key.Ewait(driver,ObjectLocator,Data,Object);
+				}
+	
+				default:
+				{
+					//logger.info("you have entered a incorrect keyword");
+				}
 			}
 
 			
@@ -148,6 +152,6 @@ public class utilities extends BaseClass {
 
 	}
 
-
+	}
 
 }
